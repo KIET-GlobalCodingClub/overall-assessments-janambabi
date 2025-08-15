@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Hackathon - Participation Certificate</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2vw;
+        }
+        
+        .certificate {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            width: min(900px, 95vw);
+            height: auto;
+            min-height: 650px;
+            border-radius: 2vw;
+            padding: clamp(20px, 4vw, 40px) clamp(30px, 6vw, 60px);
+            box-shadow: 
+                0 25px 50px rgba(102, 126, 234, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.8),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            position: relative;
+            overflow: hidden;
+            animation: certificateEntry 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, opacity;
+            aria-label="Certificate of Participation for ML Hackathon";
+        }
+        
+        @keyframes certificateEntry {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .certificate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .certificate-border {
+            position: absolute;
+            top: 1.5vw;
+            left: 1.5vw;
+            right: 1.5vw;
+            bottom: 1.5vw;
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #667eea, #764ba2, #667eea) 1;
+            border-radius: 1.5vw;
+            animation: borderGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes borderGlow {
+            0% {
+                filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.3));
+            }
+            100% {
+                filter: drop-shadow(0 0 15px rgba(102, 126, 234, 0.6));
+            }
+        }
+        
+        .logos-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: clamp(20px, 3vw, 30px);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .logo {
+            height: clamp(60px, 8vw, 80px);
+            object-fit: contain;
+            opacity: 0;
+            animation: logoFadeIn 1s ease-out 0.5s forwards;
+        }
+        
+        .logo.iiit {
+            height: clamp(50px, 7vw, 70px);
+        }
+        
+        @keyframes logoFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .certificate-title {
+            text-align: center;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: #667eea; /* Fallback color */
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: titleSlideIn 1s ease-out 0.8s forwards;
+        }
+        
+        @keyframes titleSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .certificate-subtitle {
+            text-align: center;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: #64748b;
+            margin-bottom: clamp(20px, 4vw, 35px);
+            font-weight: 500;
+            opacity: 0;
+            animation: subtitleSlideIn 1s ease-out 1s forwards;
+        }
+        
+        @keyframes subtitleSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .awarded-to {
+            text-align: center;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            color: #475569;
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: textFadeIn 1s ease-out 1.3s forwards;
+        }
+        
+        .participant-name {
+            text-align: center;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            opacity: 0;
+            animation: nameHighlight 1.5s ease-out 1.5s forwards;
+        }
+        
+        @keyframes nameHighlight {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            70% {
+                transform: scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .achievement-text {
+            text-align: center;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: clamp(20px, 3vw, 30px);
+            opacity: 0;
+            animation: textFadeIn 1s ease-out 1.8s forwards;
+        }
+        
+        .event-details {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: clamp(15px, 3vw, 20px);
+            border-radius: 1.5vw;
+            text-align: center;
+            margin-bottom: clamp(20px, 3vw, 30px);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            opacity: 0;
+            animation: detailsSlideUp 1s ease-out 2s forwards;
+        }
+        
+        @keyframes detailsSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .event-name {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .event-date {
+            font-size: clamp(0.8rem, 1.8vw, 1rem);
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: clamp(20px, 4vw, 40px);
+            opacity: 0;
+            animation: signaturesAppear 1s ease-out 2.5s forwards;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        @keyframes signaturesAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .signature {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .signature-line {
+            border-bottom: 2px solid #cbd5e1;
+            margin-bottom: 8px;
+            height: clamp(50px, 8vw, 60px);
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .signature-title {
+            font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            will-change: transform, opacity;
+        }
+        
+        .floating-star {
+            position: absolute;
+            color: #667eea;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.3;
+        }
+        
+        .star-1 { top: 10%; left: 10%; font-size: clamp(1rem, 2vw, 1.5rem); animation-delay: 0s; }
+        .star-2 { top: 20%; right: 15%; font-size: clamp(0.8rem, 1.8vw, 1.2rem); animation-delay: 2s; }
+        .star-3 { bottom: 25%; left: 8%; font-size: clamp(1.2rem, 2.2vw, 1.8rem); animation-delay: 4s; }
+        .star-4 { bottom: 15%; right: 12%; font-size: clamp(0.9rem, 2vw, 1.3rem); animation-delay: 1s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(180deg); }
+        }
+        
+        @keyframes textFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Large tablets and small desktops */
+        @media (max-width: 1024px) {
+            .certificate {
+                padding: clamp(20px, 3vw, 30px) clamp(25px, 5vw, 50px);
+                min-height: 600px;
+            }
+            .certificate-title {
+                font-size: clamp(1.8rem, 4vw, 2.4rem);
+            }
+            .participant-name {
+                font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            }
+            .logo {
+                height: clamp(50px, 7vw, 70px);
+            }
+            .logo.iiit {
+                height: clamp(45px, 6vw, 65px);
+            }
+        }
+        
+        /* Tablets and larger mobiles */
+        @media (max-width: 768px) {
+            .certificate {
+                padding: clamp(15px, 3vw, 25px) clamp(20px, 4vw, 40px);
+                min-height: 550px;
+            }
+            .certificate-title {
+                font-size: clamp(1.6rem, 3.5vw, 2rem);
+            }
+            .participant-name {
+                font-size: clamp(1.4rem, 3vw, 1.8rem);
+            }
+            .logo, .logo.iiit {
+                height: clamp(40px, 6vw, 60px);
+            }
+            .signatures {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .signature {
+                min-width: 100%;
+            }
+        }
+        
+        /* Small mobiles */
+        @media (max-width: 480px) {
+            .certificate {
+                padding: clamp(10px, 2.5vw, 20px) clamp(15px, 3.5vw, 30px);
+                min-height: 500px;
+            }
+            .certificate-title {
+                font-size: clamp(1.4rem, 3vw, 1.8rem);
+            }
+            .certificate-subtitle, .awarded-to, .achievement-text {
+                font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+            }
+            .participant-name {
+                font-size: clamp(1.2rem, 2.8vw, 1.6rem);
+            }
+            .event-name {
+                font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            }
+            .event-date, .signature-title {
+                font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+            }
+            .logo, .logo.iiit {
+                height: clamp(30px, 5vw, 50px);
+            }
+            .signature-line {
+                font-size: clamp(0.9rem, 2vw, 1.2rem);
+                height: clamp(40px, 7vw, 50px);
+            }
+            .floating-star {
+                font-size: clamp(0.6rem, 1.5vw, 1rem);
+            }
+            .certificate-border {
+                border-width: 2px;
+                top: 1vw;
+                left: 1vw;
+                right: 1vw;
+                bottom: 1vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate">
+        <div class="certificate-border"></div>
+        
+        <div class="floating-elements">
+            <div class="floating-star star-1">★</div>
+            <div class="floating-star star-2">✦</div>
+            <div class="floating-star star-3">★</div>
+            <div class="floating-star star-4">✧</div>
+        </div>
+        
+        <div class="logos-container">
+            <img src="https://upload.wikimedia.org/wikipedia/en/e/e1/International_Institute_of_Information_Technology%2C_Hyderabad_logo.png" alt="IIIT Hyderabad Logo" class="logo iiit">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRflRtyKyulIBhu2EtJsKQEFDX9vGMvSiMiEgcqHTqge26ZZPAiafbDffyqxnFh_Y0ugek&usqp=CAU" alt="KIET Logo" class="logo">
+        </div>
+        
+        <h1 class="certificate-title">Certificate of Participation</h1>
+        <p class="certificate-subtitle">This is to certify that</p>
+        
+        <p class="awarded-to">This certificate is proudly awarded to</p>
+        <h2 class="participant-name">[PARTICIPANT NAME]</h2>
+        
+        <p class="achievement-text">
+            For active participation and demonstrating exceptional enthusiasm in the
+        </p>
+        
+        <div class="event-details">
+            <h3 class="event-name">Machine Learning Hackathon</h3>
+            <p class="event-date">Organized on August 9-10, 2025</p>
+        </div>
+        
+        <div class="signatures">
+            <div class="signature">
+                <div class="signature-line">Principal Revathi</div>
+                <p class="signature-title">Principal, KIET</p>
+            </div>
+            <div class="signature">
+                <div class="signature-line">Principal Ramakrishna</div>
+                <p class="signature-title">Principal, KIETW</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
